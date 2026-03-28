@@ -214,18 +214,18 @@ local Library do
         },
 
         Folders = {
-            Directory = "Foidsploit",
-            Configs = "Foidsploit/Configs",
-            Assets = "Foidsploit/Assets"
+            Directory = "Misanthropy",
+            Configs = "Misanthropy/Configs",
+            Assets = "Misanthropy/Assets"
         },
 
         Images = {
-            ["Saturation"] = {"Saturation.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Saturation.png?raw=true" },
-            ["Value"] = { "Value.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Value.png?raw=true" },
-            ["Hue"] = { "Hue.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Hue.png?raw=true" },
-            ["Scrollbar"] =  { "Scrollbar.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Scrollbar.png?raw=true" },
-            ["Checkers"] = { "Checkers.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Checkers.png?raw=true" },
-            ["Resize"] = { "Resize.png", "https://github.com/Jimenth/Foidsploit/blob/main/Library/Images/Resize.png?raw=true" },
+            ["Saturation"] = {"Saturation.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Saturation.png?raw=true" },
+            ["Value"] = { "Value.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Value.png?raw=true" },
+            ["Hue"] = { "Hue.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Hue.png?raw=true" },
+            ["Scrollbar"] =  { "Scrollbar.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Scrollbar.png?raw=true" },
+            ["Checkers"] = { "Checkers.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Checkers.png?raw=true" },
+            ["Resize"] = { "Resize.png", "https://github.com/Jimenth/Misanthropy/blob/main/Library/Images/Resize.png?raw=true" },
         },
 
         Pages = { },
@@ -630,7 +630,7 @@ local Library do
         end
 
         CustomFont:New("Windows-XP-Tahoma", 200, "Regular", {
-            Url = "https://github.com/Jimenth/Foidsploit/blob/main/Fonts/Windows-XP-Tahoma.ttf"
+            Url = "https://github.com/Jimenth/Misanthropy/blob/main/Fonts/Windows-XP-Tahoma.ttf"
         })
 
         Library.Font = CustomFont:Get("Windows-XP-Tahoma")
