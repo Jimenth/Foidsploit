@@ -1581,7 +1581,7 @@ local Library do
                 FontFace = Library.Font,
                 TextColor3 = FromRGB(215, 215, 215),
                 BorderColor3 = FromRGB(10, 10, 10),
-                Text = "Rainbow",
+                Text = "R",
                 AutoButtonColor = false,
                 AnchorPoint = Vector2New(1, 1),
                 Name = "\0",
@@ -1599,6 +1599,55 @@ local Library do
                 Name = "\0",
                 Color = FromRGB(27, 27, 32)
             }):AddToTheme({Color = "Outline"})
+
+            Items["CopyButton"] = Instances:Create("TextButton", {
+                Parent = Items["ColorpickerWindow"].Instance,
+                FontFace = Library.Font,
+                TextColor3 = FromRGB(215, 215, 215),
+                BorderColor3 = FromRGB(10, 10, 10),
+                Text = "Copy",
+                AutoButtonColor = false,
+                AnchorPoint = Vector2New(1, 1),
+                Name = "\0",
+                Position = UDim2New(1, -22, 1, 0),
+                Size = UDim2New(0, 18, 0, 18),
+                BorderSizePixel = 2,
+                TextSize = 6,
+                BackgroundColor3 = FromRGB(33, 33, 36)
+            })  Items["CopyButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+            Instances:Create("UIStroke", {
+                Parent = Items["CopyButton"].Instance,
+                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                LineJoinMode = Enum.LineJoinMode.Miter,
+                Name = "\0",
+                Color = FromRGB(27, 27, 32)
+            }):AddToTheme({Color = "Outline"})
+
+-- Paste Button
+            Items["PasteButton"] = Instances:Create("TextButton", {
+                Parent = Items["ColorpickerWindow"].Instance,
+                FontFace = Library.Font,
+                TextColor3 = FromRGB(215, 215, 215),
+                BorderColor3 = FromRGB(10, 10, 10),
+                Text = "Paste",
+                AutoButtonColor = false,
+                AnchorPoint = Vector2New(1, 1),
+                Name = "\0",
+                Position = UDim2New(1, -44, 1, 0),
+                Size = UDim2New(0, 18, 0, 18),
+                BorderSizePixel = 2,
+                TextSize = 6,
+                BackgroundColor3 = FromRGB(33, 33, 36)
+            })  Items["PasteButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+            Instances:Create("UIStroke", {
+                Parent = Items["PasteButton"].Instance,
+                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                LineJoinMode = Enum.LineJoinMode.Miter,
+                Name = "\0",
+                Color = FromRGB(27, 27, 32)
+            }):AddToTheme({Color = "Outline"})
         end
 
         local SlidingPalette = false
@@ -1606,50 +1655,77 @@ local Library do
         local SlidingAlpha = false
 
         local RainbowActive = false
-local RainbowThread = nil
+        local RainbowThread = nil
 
-local function StopRainbow()
-    RainbowActive = false
-    if RainbowThread then
-        coroutine.close(RainbowThread)
-        RainbowThread = nil
-    end
-    Items["RainbowToggle"]:Tween(nil, {BackgroundColor3 = Library.Theme["Element"]})
-    Items["RainbowToggle"]:ChangeItemTheme({BackgroundColor3 = "Element"})
-end
-
-local function StartRainbow()
-    RainbowActive = true
-    Items["RainbowToggle"]:Tween(nil, {BackgroundColor3 = Library.Theme.Accent})
-    Items["RainbowToggle"]:ChangeItemTheme({BackgroundColor3 = "Accent"})
-
-    RainbowThread = coroutine.create(function()
-        local hue = 0
-        while RainbowActive do
-            hue = (hue + 0.002) % 1
-            Colorpicker.Hue = hue
-            Colorpicker.Saturation = 1
-            Colorpicker.Value = 1
-
-            -- Update dragger positions
-            Items["PaletteDragger"].Instance.Position = UDim2New(0, 0, 0, 0)
-            Items["HueDragger"].Instance.Position = UDim2New(0, 0, MathClamp(hue, 0, 0.994), 0)
-
-            Colorpicker:Update()
-            task.wait()
+        local function StopRainbow()
+            RainbowActive = false
+            if RainbowThread then
+                coroutine.close(RainbowThread)
+                RainbowThread = nil
+            end
+            Items["RainbowToggle"]:Tween(nil, {BackgroundColor3 = Library.Theme["Element"]})
+            Items["RainbowToggle"]:ChangeItemTheme({BackgroundColor3 = "Element"})
         end
-    end)
 
-    coroutine.resume(RainbowThread)
-end
+        local function StartRainbow()
+            RainbowActive = true
+            Items["RainbowToggle"]:Tween(nil, {BackgroundColor3 = Library.Theme.Accent})
+            Items["RainbowToggle"]:ChangeItemTheme({BackgroundColor3 = "Accent"})
 
-Items["RainbowToggle"]:Connect("MouseButton1Down", function()
-    if RainbowActive then
-        StopRainbow()
-    else
-        StartRainbow()
-    end
-end)
+            RainbowThread = coroutine.create(function()
+                local hue = 0
+                while RainbowActive do
+                    hue = (hue + 0.002) % 1
+                    Colorpicker.Hue = hue
+                    Colorpicker.Saturation = 1
+                    Colorpicker.Value = 1
+
+                    Items["PaletteDragger"].Instance.Position = UDim2New(0, 0, 0, 0)
+                    Items["HueDragger"].Instance.Position = UDim2New(0, 0, MathClamp(hue, 0, 0.994), 0)
+
+                    Colorpicker:Update()
+                    task.wait()
+                end
+            end)
+
+            coroutine.resume(RainbowThread)
+        end
+
+        Items["RainbowToggle"]:Connect("MouseButton1Down", function()
+            if RainbowActive then
+                StopRainbow()
+            else
+                StartRainbow()
+            end
+        end)
+
+        Items["CopyButton"]:Connect("MouseButton1Down", function()
+            setclipboard("#" .. Colorpicker.HexValue)
+
+            Items["CopyButton"]:Tween(nil, {BackgroundColor3 = Library.Theme.Accent})
+            task.wait(0.3)
+            Items["CopyButton"]:Tween(nil, {BackgroundColor3 = Library.Theme["Element"]})
+            Items["CopyButton"]:ChangeItemTheme({BackgroundColor3 = "Element"})
+        end)
+
+        Items["PasteButton"]:Connect("MouseButton1Down", function()
+            local ok, clipboard = pcall(getclipboard)
+            if not ok or type(clipboard) ~= "string" then return end
+
+            clipboard = StringGSub(clipboard, "^#", "")
+
+            if not clipboard:match("^%x%x%x%x%x%x$") then
+                Library:Notification("Invalid hex color on clipboard", 3, FromRGB(255, 80, 80))
+                return
+            end
+
+            Colorpicker:Set(FromHex(clipboard))
+
+            Items["PasteButton"]:Tween(nil, {BackgroundColor3 = Library.Theme.Accent})
+            task.wait(0.3)
+            Items["PasteButton"]:Tween(nil, {BackgroundColor3 = Library.Theme["Element"]})
+            Items["PasteButton"]:ChangeItemTheme({BackgroundColor3 = "Element"})
+        end)
 
         local Debounce = false
 
