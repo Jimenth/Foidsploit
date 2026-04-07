@@ -1351,13 +1351,13 @@ local Library do
                 Position = UDim2New(0, Data.Parent.Instance.AbsolutePosition.X, 0, Data.Parent.Instance.AbsolutePosition.Y + 15),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Visible = false,
-                Size = UDim2New(0, 238, 0, 224),
+                Size = UDim2New(0, 238, 0, 258),  -- was 224, +34 for bottom button row
                 BorderSizePixel = 2,
                 BackgroundColor3 = FromRGB(15, 15, 20)
             })  Items["ColorpickerWindow"]:AddToTheme({BackgroundColor3 = "Background"})
-            
+
             Items["ColorpickerWindow"]:MakeDraggable()
-            Items["ColorpickerWindow"]:MakeResizeable(Vector2New(200, 180), Vector2New(9999, 9999))
+            Items["ColorpickerWindow"]:MakeResizeable(Vector2New(200, 200), Vector2New(9999, 9999))
 
             Instances:Create("UIStroke", {
                 Parent = Items["ColorpickerWindow"].Instance,
@@ -1382,7 +1382,7 @@ local Library do
                 TextSize = 12,
                 BackgroundColor3 = FromRGB(255, 255, 255)
             })  Items["Title"]:AddToTheme({TextColor3 = "Text"})
-            
+
             Instances:Create("UIStroke", {
                 Parent = Items["Title"].Instance,
                 LineJoinMode = Enum.LineJoinMode.Miter,
@@ -1398,256 +1398,259 @@ local Library do
                 BorderSizePixel = 0,
                 BackgroundColor3 = FromRGB(235, 157, 255)
             })  Items["AccentLine"]:AddToTheme({BackgroundColor3 = "Accent"})
-            
+
             Instances:Create("UIGradient", {
                 Parent = Items["AccentLine"].Instance,
                 Rotation = 90,
                 Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(65, 65, 65))}
-            }) 
-            
+            })
+
             Instances:Create("UIPadding", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 PaddingTop = UDimNew(0, 6),
                 PaddingBottom = UDimNew(0, 6),
                 PaddingRight = UDimNew(0, 6),
                 PaddingLeft = UDimNew(0, 6)
-            }) 
+            })
             
-            Items["Palette"] = Instances:Create("TextButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                FontFace = Library.Font,
-                TextColor3 = FromRGB(0, 0, 0),
-                BorderColor3 = FromRGB(0, 0, 0),
-                Text = "",
-                AutoButtonColor = false,
-                Name = "\0",
-                Position = UDim2New(0, 0, 0, 15),
-                Size = UDim2New(1, -26, 1, -40),
-                BorderSizePixel = 0,
-                TextSize = 14,
-                BackgroundColor3 = FromRGB(255, 0, 0)
-            }) 
-            
-            Items["Saturation"] = Instances:Create("ImageLabel", {
-                Parent = Items["Palette"].Instance,
-                BorderColor3 = FromRGB(0, 0, 0),
-                Image = Library:GetImage("Saturation"),
-                BackgroundTransparency = 1,
-                Name = "\0",
-                Size = UDim2New(1, 0, 1, 0),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Items["Value"] = Instances:Create("ImageLabel", {
-                Parent = Items["Palette"].Instance,
-                BorderColor3 = FromRGB(0, 0, 0),
-                Image = Library:GetImage("Value"),
-                BackgroundTransparency = 1,
-                Name = "\0",
-                Size = UDim2New(1, 0, 1, 0),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["Palette"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
-            
-            Items["PaletteDragger"] = Instances:Create("Frame", {
-                Parent = Items["Palette"].Instance,
-                Name = "\0",
-                BorderColor3 = FromRGB(0, 0, 0),
-                Size = UDim2New(0, 2, 0, 2),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["PaletteDragger"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
-            
-            Items["Hue"] = Instances:Create("ImageButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                BorderColor3 = FromRGB(0, 0, 0),
-                AutoButtonColor = false,
-                AnchorPoint = Vector2New(1, 0),
-                Image = Library:GetImage("Hue"),
-                Name = "\0",
-                Position = UDim2New(1, 0, 0, 15),
-                Size = UDim2New(0, 18, 1, -15),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Items["HueDragger"] = Instances:Create("Frame", {
-                Parent = Items["Hue"].Instance,
-                Name = "\0",
-                BorderColor3 = FromRGB(0, 0, 0),
-                Size = UDim2New(1, 0, 0, 1),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["HueDragger"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["Hue"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
-            
-            Items["Alpha"] = Instances:Create("TextButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                FontFace = Library.Font,
-                TextColor3 = FromRGB(0, 0, 0),
-                BorderColor3 = FromRGB(0, 0, 0),
-                Text = "",
-                AutoButtonColor = false,
-                AnchorPoint = Vector2New(0, 1),
-                Name = "\0",
-                Position = UDim2New(0, 0, 1, 0),
-                Size = UDim2New(1, -26, 0, 18),
-                BorderSizePixel = 0,
-                TextSize = 14,
-                BackgroundColor3 = FromRGB(255, 0, 0)
-            }) 
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["Alpha"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
-            
-            Items["Checkers"] = Instances:Create("ImageLabel", {
-                Parent = Items["Alpha"].Instance,
-                ScaleType = Enum.ScaleType.Tile,
-                BorderColor3 = FromRGB(0, 0, 0),
-                Image = Library:GetImage("Checkers"),
-                TileSize = UDim2New(0, 6, 0, 6),
-                Name = "\0",
-                Size = UDim2New(1, 0, 1, 0),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Instances:Create("UIGradient", {
-                Parent = Items["Checkers"].Instance,
-                Transparency = NumSequence{NumSequenceKeypoint(0, 1), NumSequenceKeypoint(1, 0)}
-            }) 
-            
-            Instances:Create("UIGradient", {
-                Parent = Items["Alpha"].Instance,
-                Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(0, 0, 0))}
-            }) 
-            
-            Items["AlphaDragger"] = Instances:Create("Frame", {
-                Parent = Items["Alpha"].Instance,
-                Name = "\0",
-                BorderColor3 = FromRGB(0, 0, 0),
-                Size = UDim2New(0, 1, 1, 0),
-                BorderSizePixel = 0,
-                BackgroundColor3 = FromRGB(255, 255, 255)
-            }) 
-            
-            Instances:Create("UIStroke", {
-                Parent = Items["AlphaDragger"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
+Items["Palette"] = Instances:Create("TextButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    FontFace = Library.Font,
+    TextColor3 = FromRGB(0, 0, 0),
+    BorderColor3 = FromRGB(0, 0, 0),
+    Text = "",
+    AutoButtonColor = false,
+    Name = "\0",
+    Position = UDim2New(0, 0, 0, 15),
+    Size = UDim2New(1, -26, 1, -62),  -- was -40
+    BorderSizePixel = 0,
+    TextSize = 14,
+    BackgroundColor3 = FromRGB(255, 0, 0)
+})
 
-            Items["RainbowToggle"] = Instances:Create("TextButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
-                BorderColor3 = FromRGB(10, 10, 10),
-                Text = "R",
-                AutoButtonColor = false,
-                AnchorPoint = Vector2New(1, 1),
-                Name = "\0",
-                Position = UDim2New(1, 0, 1, 0),
-                Size = UDim2New(0, 18, 0, 18),
-                BorderSizePixel = 2,
-                TextSize = 6,
-                BackgroundColor3 = FromRGB(33, 33, 36)
-            })  Items["RainbowToggle"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+Instances:Create("UIStroke", {
+    Parent = Items["Palette"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+            
+Items["Saturation"] = Instances:Create("ImageLabel", {
+    Parent = Items["Palette"].Instance,
+    BorderColor3 = FromRGB(0, 0, 0),
+    Image = Library:GetImage("Saturation"),
+    BackgroundTransparency = 1,
+    Name = "\0",
+    Size = UDim2New(1, 0, 1, 0),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
 
-            Instances:Create("UIStroke", {
-                Parent = Items["RainbowToggle"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
+Items["Value"] = Instances:Create("ImageLabel", {
+    Parent = Items["Palette"].Instance,
+    BorderColor3 = FromRGB(0, 0, 0),
+    Image = Library:GetImage("Value"),
+    BackgroundTransparency = 1,
+    Name = "\0",
+    Size = UDim2New(1, 0, 1, 0),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
+            
+Items["PaletteDragger"] = Instances:Create("Frame", {
+    Parent = Items["Palette"].Instance,
+    Name = "\0",
+    BorderColor3 = FromRGB(0, 0, 0),
+    Size = UDim2New(0, 2, 0, 2),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
 
-            Items["CopyButton"] = Instances:Create("TextButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
-                BorderColor3 = FromRGB(10, 10, 10),
-                Text = "Copy",
-                AutoButtonColor = false,
-                AnchorPoint = Vector2New(1, 1),
-                Name = "\0",
-                Position = UDim2New(1, -22, 1, 0),
-                Size = UDim2New(0, 18, 0, 18),
-                BorderSizePixel = 2,
-                TextSize = 6,
-                BackgroundColor3 = FromRGB(33, 33, 36)
-            })  Items["CopyButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+Instances:Create("UIStroke", {
+    Parent = Items["PaletteDragger"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+            
+Items["Hue"] = Instances:Create("ImageButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    BorderColor3 = FromRGB(0, 0, 0),
+    AutoButtonColor = false,
+    AnchorPoint = Vector2New(1, 0),
+    Image = Library:GetImage("Hue"),
+    Name = "\0",
+    Position = UDim2New(1, 0, 0, 15),
+    Size = UDim2New(0, 18, 1, -58),  -- was -15; leaves room for alpha + buttons below
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
 
-            Instances:Create("UIStroke", {
-                Parent = Items["CopyButton"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
+Instances:Create("UIStroke", {
+    Parent = Items["Hue"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
 
--- Paste Button
-            Items["PasteButton"] = Instances:Create("TextButton", {
-                Parent = Items["ColorpickerWindow"].Instance,
-                FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
-                BorderColor3 = FromRGB(10, 10, 10),
-                Text = "Paste",
-                AutoButtonColor = false,
-                AnchorPoint = Vector2New(1, 1),
-                Name = "\0",
-                Position = UDim2New(1, -44, 1, 0),
-                Size = UDim2New(0, 18, 0, 18),
-                BorderSizePixel = 2,
-                TextSize = 6,
-                BackgroundColor3 = FromRGB(33, 33, 36)
-            })  Items["PasteButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+Items["HueDragger"] = Instances:Create("Frame", {
+    Parent = Items["Hue"].Instance,
+    Name = "\0",
+    BorderColor3 = FromRGB(0, 0, 0),
+    Size = UDim2New(1, 0, 0, 1),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
 
-            Instances:Create("UIStroke", {
-                Parent = Items["PasteButton"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({Color = "Outline"})
+Instances:Create("UIStroke", {
+    Parent = Items["HueDragger"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+            
+Items["Alpha"] = Instances:Create("TextButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    FontFace = Library.Font,
+    TextColor3 = FromRGB(0, 0, 0),
+    BorderColor3 = FromRGB(0, 0, 0),
+    Text = "",
+    AutoButtonColor = false,
+    AnchorPoint = Vector2New(0, 1),
+    Name = "\0",
+    Position = UDim2New(0, 0, 1, -26),  -- was (0,0,1,0); lifted above button row
+    Size = UDim2New(1, -26, 0, 18),
+    BorderSizePixel = 0,
+    TextSize = 14,
+    BackgroundColor3 = FromRGB(255, 0, 0)
+})
+
+Instances:Create("UIStroke", {
+    Parent = Items["Alpha"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+
+Items["Checkers"] = Instances:Create("ImageLabel", {
+    Parent = Items["Alpha"].Instance,
+    ScaleType = Enum.ScaleType.Tile,
+    BorderColor3 = FromRGB(0, 0, 0),
+    Image = Library:GetImage("Checkers"),
+    TileSize = UDim2New(0, 6, 0, 6),
+    Name = "\0",
+    Size = UDim2New(1, 0, 1, 0),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
+
+Instances:Create("UIGradient", {
+    Parent = Items["Checkers"].Instance,
+    Transparency = NumSequence{NumSequenceKeypoint(0, 1), NumSequenceKeypoint(1, 0)}
+}) 
+
+Instances:Create("UIGradient", {
+    Parent = Items["Alpha"].Instance,
+    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(0, 0, 0))}
+})
+
+Items["AlphaDragger"] = Instances:Create("Frame", {
+    Parent = Items["Alpha"].Instance,
+    Name = "\0",
+    BorderColor3 = FromRGB(0, 0, 0),
+    Size = UDim2New(0, 1, 1, 0),
+    BorderSizePixel = 0,
+    BackgroundColor3 = FromRGB(255, 255, 255)
+})
+
+Instances:Create("UIStroke", {
+    Parent = Items["AlphaDragger"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+
+Items["RainbowToggle"] = Instances:Create("TextButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    FontFace = Library.Font,
+    TextColor3 = FromRGB(215, 215, 215),
+    BorderColor3 = FromRGB(10, 10, 10),
+    Text = "",                          -- no label
+    AutoButtonColor = false,
+    AnchorPoint = Vector2New(1, 1),
+    Name = "\0",
+    Position = UDim2New(1, 0, 1, -26), -- sits directly under the hue strip, above button row
+    Size = UDim2New(0, 18, 0, 18),     -- same width/height as hue slider width
+    BorderSizePixel = 2,
+    TextSize = 12,
+    BackgroundColor3 = FromRGB(33, 33, 36)
+})  Items["RainbowToggle"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+Instances:Create("UIStroke", {
+    Parent = Items["RainbowToggle"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+
+-- ─── COPY BUTTON (left half of bottom row, standard button style) ─────────
+-- Full width minus 26px (hue strip width) split in half with 4px gap between
+-- Left half: X from 0, width = (1, -30) / 2  →  UDim2New(0.5, -15, 0, 18)
+Items["CopyButton"] = Instances:Create("TextButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    FontFace = Library.Font,
+    TextColor3 = FromRGB(215, 215, 215),
+    BorderColor3 = FromRGB(10, 10, 10),
+    Text = "Copy",
+    AutoButtonColor = false,
+    AnchorPoint = Vector2New(0, 1),
+    Name = "\0",
+    Position = UDim2New(0, 0, 1, 0),           -- bottom-left, respects UIPadding
+    Size = UDim2New(0.5, -15, 0, 18),           -- half width minus gap+hue-strip allowance
+    BorderSizePixel = 2,
+    TextSize = 12,
+    BackgroundColor3 = FromRGB(33, 33, 36)
+})  Items["CopyButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+Instances:Create("UIStroke", {
+    Parent = Items["CopyButton"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
+
+-- ─── PASTE BUTTON (right half of bottom row, standard button style) ───────
+Items["PasteButton"] = Instances:Create("TextButton", {
+    Parent = Items["ColorpickerWindow"].Instance,
+    FontFace = Library.Font,
+    TextColor3 = FromRGB(215, 215, 215),
+    BorderColor3 = FromRGB(10, 10, 10),
+    Text = "Paste",
+    AutoButtonColor = false,
+    AnchorPoint = Vector2New(0, 1),
+    Name = "\0",
+    Position = UDim2New(0.5, -11, 1, 0),       -- right half, 4px gap from Copy
+    Size = UDim2New(0.5, -15, 0, 18),
+    BorderSizePixel = 2,
+    TextSize = 12,
+    BackgroundColor3 = FromRGB(33, 33, 36)
+})  Items["PasteButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+Instances:Create("UIStroke", {
+    Parent = Items["PasteButton"].Instance,
+    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    LineJoinMode = Enum.LineJoinMode.Miter,
+    Name = "\0",
+    Color = FromRGB(27, 27, 32)
+}):AddToTheme({Color = "Outline"})
         end
 
         local SlidingPalette = false
