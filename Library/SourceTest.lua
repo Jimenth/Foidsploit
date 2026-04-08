@@ -1586,7 +1586,7 @@ local Library do
                 AutoButtonColor = false,
                 AnchorPoint = Vector2New(1, 1),
                 Name = "\0",
-                Position = UDim2New(1, 0, 1, -26),
+                Position = UDim2New(1, 0, 1, 0),
                 Size = UDim2New(0, 18, 0, 18),
                 Selectable = false,
                 BorderSizePixel = 2,
