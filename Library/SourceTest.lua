@@ -1716,6 +1716,7 @@ Instances:Create("UIStroke", {
                 return
             end
 
+            print(ColorString)
             local clipboard = ColorString:gsub("^#", ""):gsub("%s+", "")
 
             if not clipboard:match("^%x%x%x%x%x%x$") then
