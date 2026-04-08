@@ -139,6 +139,7 @@
 ]]
 
 local LoadingTick = os.clock()
+local ColorString = nil
 
 if getgenv().Library then 
     getgenv().Library:Unload()
@@ -1697,8 +1698,6 @@ Instances:Create("UIStroke", {
                 StartRainbow()
             end
         end)
-
-        local ColorString = nil
 
         Items["CopyButton"]:Connect("MouseButton1Down", function()
             ColorString = "#" .. Colorpicker.HexValue
