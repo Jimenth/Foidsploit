@@ -1352,7 +1352,7 @@ local Library do
                 Position = UDim2New(0, Data.Parent.Instance.AbsolutePosition.X, 0, Data.Parent.Instance.AbsolutePosition.Y + 15),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Visible = false,
-                Size = UDim2New(0, 238, 0, 258),  -- was 224, +34 for bottom button row
+                Size = UDim2New(0, 238, 0, 258),
                 BorderSizePixel = 2,
                 BackgroundColor3 = FromRGB(15, 15, 20)
             })  Items["ColorpickerWindow"]:AddToTheme({BackgroundColor3 = "Background"})
@@ -1414,7 +1414,7 @@ local Library do
                 PaddingLeft = UDimNew(0, 6)
             })
             
-Items["Palette"] = Instances:Create("TextButton", {
+            Items["Palette"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
                 TextColor3 = FromRGB(0, 0, 0),
@@ -1580,31 +1580,37 @@ Items["Palette"] = Instances:Create("TextButton", {
             Items["RainbowToggle"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(235, 157, 255),
-                BorderColor3 = FromRGB(0, 0, 0),
-                Text = "R",
+                TextColor3 = FromRGB(0, 0, 0),
+                BorderColor3 = FromRGB(10, 10, 10),
+                Text = "",
                 AutoButtonColor = false,
                 AnchorPoint = Vector2New(1, 1),
                 Name = "\0",
                 Position = UDim2New(1, 0, 1, -26),
                 Size = UDim2New(0, 18, 0, 18),
-                BorderSizePixel = 0,
-                BackgroundTransparency = 1,
-                TextSize = 12,
-                BackgroundColor3 = FromRGB(255, 255, 255)
+                Selectable = false,
+                BorderSizePixel = 2,
+                BackgroundColor3 = FromRGB(33, 33, 36)
+            })  Items["RainbowToggle"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
+
+            Instances:Create("UIGradient", {
+                Parent = Items["RainbowToggle"].Instance,
+                Rotation = 90,
+                Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
             })
-            Items["RainbowToggle"]:AddToTheme({ TextColor3 = "Text" })
 
             Instances:Create("UIStroke", {
                 Parent = Items["RainbowToggle"].Instance,
+                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                 LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0"
-            }):AddToTheme({ Color = "Text Border" })
+                Name = "\0",
+                Color = FromRGB(27, 27, 32)
+            }):AddToTheme({Color = "Outline"})
 
             Items["CopyButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(235, 157, 255),
+                TextColor3 = FromRGB(215, 215, 215),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Copy",
                 AutoButtonColor = false,
@@ -1615,13 +1621,12 @@ Items["Palette"] = Instances:Create("TextButton", {
                 Selectable = false,
                 BorderSizePixel = 2,
                 BackgroundColor3 = FromRGB(33, 33, 36)
-            })
-            Items["CopyButton"]:AddToTheme({ BackgroundColor3 = "Element", BorderColor3 = "Border" })
+            })  Items["CopyButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
 
             Instances:Create("UIGradient", {
                 Parent = Items["CopyButton"].Instance,
                 Rotation = 90,
-                Color = RGBSequence{ RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100)) }
+                Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
             })
 
             Instances:Create("UIStroke", {
@@ -1630,12 +1635,12 @@ Items["Palette"] = Instances:Create("TextButton", {
                 LineJoinMode = Enum.LineJoinMode.Miter,
                 Name = "\0",
                 Color = FromRGB(27, 27, 32)
-            }):AddToTheme({ Color = "Outline" })
+            }):AddToTheme({Color = "Outline"})
 
             Items["PasteButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(235, 157, 255),
+                TextColor3 = FromRGB(215, 215, 215),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Paste",
                 AutoButtonColor = false,
@@ -1646,13 +1651,12 @@ Items["Palette"] = Instances:Create("TextButton", {
                 Selectable = false,
                 BorderSizePixel = 2,
                 BackgroundColor3 = FromRGB(33, 33, 36)
-            })
-            Items["PasteButton"]:AddToTheme({ BackgroundColor3 = "Element", BorderColor3 = "Border" })
+            })  Items["PasteButton"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
 
             Instances:Create("UIGradient", {
                 Parent = Items["PasteButton"].Instance,
                 Rotation = 90,
-                Color = RGBSequence{ RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100)) }
+                Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
             })
 
             Instances:Create("UIStroke", {
@@ -1661,7 +1665,7 @@ Items["Palette"] = Instances:Create("TextButton", {
                 LineJoinMode = Enum.LineJoinMode.Miter,
                 Name = "\0",
                 Color = FromRGB(27, 27, 32)
-            }):AddToTheme({ Color = "Outline" })
+            }):AddToTheme({Color = "Outline"})
         end
 
         local SlidingPalette = false
