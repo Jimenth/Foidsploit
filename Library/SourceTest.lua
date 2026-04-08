@@ -1413,7 +1413,7 @@ local Library do
                 PaddingLeft = UDimNew(0, 6)
             })
             
-Items["Palette"] = Instances:Create("TextButton", {
+            Items["Palette"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
                 TextColor3 = FromRGB(0, 0, 0),
@@ -1579,32 +1579,31 @@ Items["Palette"] = Instances:Create("TextButton", {
             Items["RainbowToggle"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
-                BorderColor3 = FromRGB(10, 10, 10),
-                Text = "",
+                TextColor3 = FromRGB(235, 157, 255),
+                BorderColor3 = FromRGB(0, 0, 0),
+                Text = "R",
                 AutoButtonColor = false,
                 AnchorPoint = Vector2New(1, 1),
                 Name = "\0",
                 Position = UDim2New(1, 0, 1, -26),
                 Size = UDim2New(0, 18, 0, 18),
-                BorderSizePixel = 2,
+                BorderSizePixel = 0,
+                BackgroundTransparency = 1,
                 TextSize = 12,
-                BackgroundColor3 = FromRGB(33, 33, 36)
+                BackgroundColor3 = FromRGB(255, 255, 255)
             })
-            Items["RainbowToggle"]:AddToTheme({ BackgroundColor3 = "Element", BorderColor3 = "Border" })
+            Items["RainbowToggle"]:AddToTheme({ TextColor3 = "Text" })
 
             Instances:Create("UIStroke", {
                 Parent = Items["RainbowToggle"].Instance,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                 LineJoinMode = Enum.LineJoinMode.Miter,
-                Name = "\0",
-                Color = FromRGB(27, 27, 32)
-            }):AddToTheme({ Color = "Outline" })
+                Name = "\0"
+            }):AddToTheme({ Color = "Text Border" })
 
             Items["CopyButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
+                TextColor3 = FromRGB(235, 157, 255),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Copy",
                 AutoButtonColor = false,
@@ -1612,11 +1611,17 @@ Items["Palette"] = Instances:Create("TextButton", {
                 Name = "\0",
                 Position = UDim2New(0, 0, 1, 0),
                 Size = UDim2New(0.5, -15, 0, 18),
+                Selectable = false,
                 BorderSizePixel = 2,
-                TextSize = 12,
                 BackgroundColor3 = FromRGB(33, 33, 36)
             })
             Items["CopyButton"]:AddToTheme({ BackgroundColor3 = "Element", BorderColor3 = "Border" })
+
+            Instances:Create("UIGradient", {
+                Parent = Items["CopyButton"].Instance,
+                Rotation = 90,
+                Color = RGBSequence{ RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100)) }
+            })
 
             Instances:Create("UIStroke", {
                 Parent = Items["CopyButton"].Instance,
@@ -1629,7 +1634,7 @@ Items["Palette"] = Instances:Create("TextButton", {
             Items["PasteButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
+                TextColor3 = FromRGB(235, 157, 255),
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Paste",
                 AutoButtonColor = false,
@@ -1637,11 +1642,17 @@ Items["Palette"] = Instances:Create("TextButton", {
                 Name = "\0",
                 Position = UDim2New(0.5, -11, 1, 0),
                 Size = UDim2New(0.5, -15, 0, 18),
+                Selectable = false,
                 BorderSizePixel = 2,
-                TextSize = 12,
                 BackgroundColor3 = FromRGB(33, 33, 36)
             })
             Items["PasteButton"]:AddToTheme({ BackgroundColor3 = "Element", BorderColor3 = "Border" })
+
+            Instances:Create("UIGradient", {
+                Parent = Items["PasteButton"].Instance,
+                Rotation = 90,
+                Color = RGBSequence{ RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100)) }
+            })
 
             Instances:Create("UIStroke", {
                 Parent = Items["PasteButton"].Instance,
