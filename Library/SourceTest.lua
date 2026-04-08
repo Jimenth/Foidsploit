@@ -1422,7 +1422,7 @@ Items["Palette"] = Instances:Create("TextButton", {
     AutoButtonColor = false,
     Name = "\0",
     Position = UDim2New(0, 0, 0, 15),
-    Size = UDim2New(1, -26, 1, -62),  -- was -40
+    Size = UDim2New(1, -26, 1, -62),
     BorderSizePixel = 0,
     TextSize = 14,
     BackgroundColor3 = FromRGB(255, 0, 0)
@@ -1483,7 +1483,7 @@ Items["Hue"] = Instances:Create("ImageButton", {
     Image = Library:GetImage("Hue"),
     Name = "\0",
     Position = UDim2New(1, 0, 0, 15),
-    Size = UDim2New(0, 18, 1, -58),  -- was -15; leaves room for alpha + buttons below
+    Size = UDim2New(0, 18, 1, -58),
     BorderSizePixel = 0,
     BackgroundColor3 = FromRGB(255, 255, 255)
 })
@@ -1522,7 +1522,7 @@ Items["Alpha"] = Instances:Create("TextButton", {
     AutoButtonColor = false,
     AnchorPoint = Vector2New(0, 1),
     Name = "\0",
-    Position = UDim2New(0, 0, 1, -26),  -- was (0,0,1,0); lifted above button row
+    Position = UDim2New(0, 0, 1, -26),
     Size = UDim2New(1, -26, 0, 18),
     BorderSizePixel = 0,
     TextSize = 14,
@@ -1581,12 +1581,12 @@ Items["RainbowToggle"] = Instances:Create("TextButton", {
     FontFace = Library.Font,
     TextColor3 = FromRGB(215, 215, 215),
     BorderColor3 = FromRGB(10, 10, 10),
-    Text = "",                          -- no label
+    Text = "", 
     AutoButtonColor = false,
     AnchorPoint = Vector2New(1, 1),
     Name = "\0",
-    Position = UDim2New(1, 0, 1, -26), -- sits directly under the hue strip, above button row
-    Size = UDim2New(0, 18, 0, 18),     -- same width/height as hue slider width
+    Position = UDim2New(1, 0, 1, -26),
+    Size = UDim2New(0, 18, 0, 18),
     BorderSizePixel = 2,
     TextSize = 12,
     BackgroundColor3 = FromRGB(33, 33, 36)
@@ -1600,9 +1600,6 @@ Instances:Create("UIStroke", {
     Color = FromRGB(27, 27, 32)
 }):AddToTheme({Color = "Outline"})
 
--- ─── COPY BUTTON (left half of bottom row, standard button style) ─────────
--- Full width minus 26px (hue strip width) split in half with 4px gap between
--- Left half: X from 0, width = (1, -30) / 2  →  UDim2New(0.5, -15, 0, 18)
 Items["CopyButton"] = Instances:Create("TextButton", {
     Parent = Items["ColorpickerWindow"].Instance,
     FontFace = Library.Font,
@@ -1612,8 +1609,8 @@ Items["CopyButton"] = Instances:Create("TextButton", {
     AutoButtonColor = false,
     AnchorPoint = Vector2New(0, 1),
     Name = "\0",
-    Position = UDim2New(0, 0, 1, 0),           -- bottom-left, respects UIPadding
-    Size = UDim2New(0.5, -15, 0, 18),           -- half width minus gap+hue-strip allowance
+    Position = UDim2New(0, 0, 1, 0),
+    Size = UDim2New(0.5, -15, 0, 18),
     BorderSizePixel = 2,
     TextSize = 12,
     BackgroundColor3 = FromRGB(33, 33, 36)
@@ -1627,7 +1624,6 @@ Instances:Create("UIStroke", {
     Color = FromRGB(27, 27, 32)
 }):AddToTheme({Color = "Outline"})
 
--- ─── PASTE BUTTON (right half of bottom row, standard button style) ───────
 Items["PasteButton"] = Instances:Create("TextButton", {
     Parent = Items["ColorpickerWindow"].Instance,
     FontFace = Library.Font,
@@ -1637,7 +1633,7 @@ Items["PasteButton"] = Instances:Create("TextButton", {
     AutoButtonColor = false,
     AnchorPoint = Vector2New(0, 1),
     Name = "\0",
-    Position = UDim2New(0.5, -11, 1, 0),       -- right half, 4px gap from Copy
+    Position = UDim2New(0.5, -11, 1, 0),
     Size = UDim2New(0.5, -15, 0, 18),
     BorderSizePixel = 2,
     TextSize = 12,
