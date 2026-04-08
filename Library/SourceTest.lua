@@ -245,7 +245,8 @@ local Library do
         Font = nil,
         KeyList = nil,
 
-        CurrentColorpicker = nil
+        CurrentColorpicker = nil,
+        ColorString = nil,
     }
 
     Library.__index = Library
@@ -1698,11 +1699,9 @@ Instances:Create("UIStroke", {
             end
         end)
 
-        local ColorString = nil
-
         Items["CopyButton"]:Connect("MouseButton1Down", function()
-            ColorString = "#" .. Colorpicker.HexValue
-            pcall(setclipboard, ColorString)
+            Library.ColorString = "#" .. Colorpicker.HexValue
+            pcall(setclipboard, Library.ColorString)
 
             Items["CopyButton"]:Tween(nil, {BackgroundColor3 = Library.Theme.Accent})
             task.wait(0.3)
@@ -1711,13 +1710,12 @@ Instances:Create("UIStroke", {
         end)
 
         Items["PasteButton"]:Connect("MouseButton1Down", function()
-            if not ColorString then
+            if not Library.ColorString then
                 Library:Notification("No color copied yet", 3, FromRGB(255, 80, 80))
                 return
             end
 
-            print(ColorString)
-            local clipboard = ColorString:gsub("^#", ""):gsub("%s+", "")
+            local clipboard = Library.ColorString:gsub("^#", ""):gsub("%s+", "")
 
             if not clipboard:match("^%x%x%x%x%x%x$") then
                 Library:Notification("Invalid hex color stored", 3, FromRGB(255, 80, 80))
