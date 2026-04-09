@@ -1610,7 +1610,7 @@ local Library do
             Items["CopyButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
+                TextColor3 = Library.Theme.Text,
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Copy",
                 AutoButtonColor = false,
@@ -1640,7 +1640,7 @@ local Library do
             Items["PasteButton"] = Instances:Create("TextButton", {
                 Parent = Items["ColorpickerWindow"].Instance,
                 FontFace = Library.Font,
-                TextColor3 = FromRGB(215, 215, 215),
+                TextColor3 = Library.Theme.Text,
                 BorderColor3 = FromRGB(10, 10, 10),
                 Text = "Paste",
                 AutoButtonColor = false,
