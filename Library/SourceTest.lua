@@ -4084,10 +4084,11 @@ Items["RealSlider"]:Connect("MouseButton1Down", function()
         local InputBox = Instances:Create("TextBox", {
             Parent = Items["RealSlider"].Instance,
             FontFace = Library.Font,
-            TextColor3 = FromRGB(215, 215, 215),
+            TextColor3 = Library.Theme.Text,
             BorderColor3 = FromRGB(10, 10, 10),
-            Text = `{Slider.Value}/{Slider.Max}{Slider.Suffix}`,
-            ClearTextOnFocus = true,
+            Text = "",
+            PlaceholderText = "",
+            ClearTextOnFocus = false,
             AutoButtonColor = false,
             Size = UDim2New(1, 0, 1, 0),
             Position = UDim2New(0, 0, 0, 0),
@@ -4116,7 +4117,8 @@ Items["RealSlider"]:Connect("MouseButton1Down", function()
         InputBox.Instance.FocusLost:Connect(function()
             local Parsed = tonumber(InputBox.Instance.Text)
             if Parsed then
-                Slider:Set(Parsed)
+                local Clamped = MathClamp(Library:Round(Parsed, Slider.Decimals), Slider.Min, Parsed)
+                Slider:Set(Clamped)
             end
             InputBox:Clean()
         end)
