@@ -4077,62 +4077,62 @@ local Library do
             Items["Slider"].Instance.Visible = Bool
         end
         
-Items["RealSlider"]:Connect("MouseButton1Down", function()
-    if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) or UserInputService:IsKeyDown(Enum.KeyCode.RightControl) then
-        Slider.Sliding = false
+        Items["RealSlider"]:Connect("MouseButton1Down", function()
+            if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) or UserInputService:IsKeyDown(Enum.KeyCode.RightControl) then
+                Slider.Sliding = false
 
-        local InputBox = Instances:Create("TextBox", {
-            Parent = Items["RealSlider"].Instance,
-            FontFace = Library.Font,
-            TextColor3 = Library.Theme.Text,
-            BorderColor3 = FromRGB(10, 10, 10),
-            Text = "",
-            PlaceholderText = "",
-            ClearTextOnFocus = false,
-            Size = UDim2New(1, 0, 1, 0),
-            Position = UDim2New(0, 0, 0, 0),
-            BorderSizePixel = 2,
-            TextSize = 12,
-            ZIndex = 10,
-            BackgroundColor3 = FromRGB(33, 33, 36)
-        })  InputBox:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
+                local InputBox = Instances:Create("TextBox", {
+                    Parent = Items["RealSlider"].Instance,
+                    FontFace = Library.Font,
+                    TextColor3 = Library.Theme.Text,
+                    BorderColor3 = FromRGB(10, 10, 10),
+                    Text = "",
+                    PlaceholderText = "",
+                    ClearTextOnFocus = false,
+                    Size = UDim2New(1, 0, 1, 0),
+                    Position = UDim2New(0, 0, 0, 0),
+                    BorderSizePixel = 2,
+                    TextSize = 12,
+                    ZIndex = 10,
+                    BackgroundColor3 = FromRGB(33, 33, 36)
+                })  InputBox:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
 
-        Instances:Create("UIStroke", {
-            Parent = InputBox.Instance,
-            ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-            LineJoinMode = Enum.LineJoinMode.Miter,
-            Name = "\0",
-            Color = FromRGB(27, 27, 32)
-        }):AddToTheme({Color = "Outline"})
+                Instances:Create("UIStroke", {
+                    Parent = InputBox.Instance,
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    LineJoinMode = Enum.LineJoinMode.Miter,
+                    Name = "\0",
+                    Color = FromRGB(27, 27, 32)
+                }):AddToTheme({Color = "Outline"})
 
-        Instances:Create("UIGradient", {
-            Parent = InputBox.Instance,
-            Rotation = 90,
-            Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
-        })
+                Instances:Create("UIGradient", {
+                    Parent = InputBox.Instance,
+                    Rotation = 90,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
+                })
 
-        InputBox.Instance:CaptureFocus()
+                InputBox.Instance:CaptureFocus()
 
-        InputBox.Instance.FocusLost:Connect(function()
-            local Parsed = tonumber(InputBox.Instance.Text)
-            if Parsed then
-                local Clamped = MathClamp(Library:Round(Parsed, Slider.Decimals), Slider.Min, Parsed)
-                Slider:Set(Clamped)
+                InputBox.Instance.FocusLost:Connect(function()
+                    local Parsed = tonumber(InputBox.Instance.Text)
+                    if Parsed then
+                        local Clamped = MathClamp(Library:Round(Parsed, Slider.Decimals), Slider.Min, Parsed)
+                        Slider:Set(Clamped)
+                    end
+                    InputBox:Clean()
+                end)
+
+                return
             end
-            InputBox:Clean()
+
+            Slider.Sliding = true
+
+            local MousePos = UserInputService:GetMouseLocation()
+            local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
+            local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
+
+            Slider:Set(Value)
         end)
-
-        return
-    end
-
-    Slider.Sliding = true
-
-    local MousePos = UserInputService:GetMouseLocation()
-    local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
-    local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
-
-    Slider:Set(Value)
-end)
 
         Items["RealSlider"]:Connect("InputEnded", function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
