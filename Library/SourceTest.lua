@@ -4088,7 +4088,6 @@ Items["RealSlider"]:Connect("MouseButton1Down", function()
             Text = "",
             PlaceholderText = "",
             ClearTextOnFocus = false,
-            AutoButtonColor = false,
             Size = UDim2New(1, 0, 1, 0),
             Position = UDim2New(0, 0, 0, 0),
             BorderSizePixel = 2,
