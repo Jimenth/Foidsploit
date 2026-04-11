@@ -4081,31 +4081,44 @@ Items["RealSlider"]:Connect("MouseButton1Down", function()
     if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) or UserInputService:IsKeyDown(Enum.KeyCode.RightControl) then
         Slider.Sliding = false
 
-        local InputBox = Instance.new("TextBox")
-        InputBox.Size = UDim2.new(1, 0, 1, 0)
-        InputBox.Position = UDim2.new(0, 0, 0, 0)
-        InputBox.BackgroundColor3 = Items["RealSlider"].Instance.BackgroundColor3
-        InputBox.BackgroundTransparency = 0
-        InputBox.TextColor3 = FromRGB(215, 215, 215)
-        InputBox.FontFace = Library.Font
-        InputBox.TextSize = 12
-        InputBox.Text = `{Slider.Value}/{Slider.Max}{Slider.Suffix}`
-        InputBox.ClearTextOnFocus = true
-        InputBox.ZIndex = 10
-        InputBox.Parent = Items["RealSlider"].Instance
+        local InputBox = Instances:Create("TextBox", {
+            Parent = Items["RealSlider"].Instance,
+            FontFace = Library.Font,
+            TextColor3 = FromRGB(215, 215, 215),
+            BorderColor3 = FromRGB(10, 10, 10),
+            Text = `{Slider.Value}/{Slider.Max}{Slider.Suffix}`,
+            ClearTextOnFocus = true,
+            AutoButtonColor = false,
+            Size = UDim2New(1, 0, 1, 0),
+            Position = UDim2New(0, 0, 0, 0),
+            BorderSizePixel = 2,
+            TextSize = 12,
+            ZIndex = 10,
+            BackgroundColor3 = FromRGB(33, 33, 36)
+        })  InputBox:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
 
-        local Stroke = Instance.new("UIStroke")
-        Stroke.LineJoinMode = Enum.LineJoinMode.Miter
-        Stroke.Parent = InputBox
+        Instances:Create("UIStroke", {
+            Parent = InputBox.Instance,
+            ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+            LineJoinMode = Enum.LineJoinMode.Miter,
+            Name = "\0",
+            Color = FromRGB(27, 27, 32)
+        }):AddToTheme({Color = "Outline"})
 
-        InputBox:CaptureFocus()
+        Instances:Create("UIGradient", {
+            Parent = InputBox.Instance,
+            Rotation = 90,
+            Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(100, 100, 100))}
+        })
 
-        InputBox.FocusLost:Connect(function(EnterPressed)
-            local Parsed = tonumber(InputBox.Text)
+        InputBox.Instance:CaptureFocus()
+
+        InputBox.Instance.FocusLost:Connect(function()
+            local Parsed = tonumber(InputBox.Instance.Text)
             if Parsed then
                 Slider:Set(Parsed)
             end
-            InputBox:Destroy()
+            InputBox:Clean()
         end)
 
         return
