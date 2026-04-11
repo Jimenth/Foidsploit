@@ -4076,17 +4076,49 @@ local Library do
         function Slider:SetVisibility(Bool)
             Items["Slider"].Instance.Visible = Bool
         end
+        
+Items["RealSlider"]:Connect("MouseButton1Down", function()
+    if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) or UserInputService:IsKeyDown(Enum.KeyCode.RightControl) then
+        Slider.Sliding = false
 
-        Items["RealSlider"]:Connect("MouseButton1Down", function()
-            Slider.Sliding = true
+        local InputBox = Instance.new("TextBox")
+        InputBox.Size = UDim2.new(1, 0, 1, 0)
+        InputBox.Position = UDim2.new(0, 0, 0, 0)
+        InputBox.BackgroundColor3 = Items["RealSlider"].Instance.BackgroundColor3
+        InputBox.BackgroundTransparency = 0
+        InputBox.TextColor3 = FromRGB(215, 215, 215)
+        InputBox.FontFace = Library.Font
+        InputBox.TextSize = 12
+        InputBox.Text = `{Slider.Value}/{Slider.Max}{Slider.Suffix}`
+        InputBox.ClearTextOnFocus = true
+        InputBox.ZIndex = 10
+        InputBox.Parent = Items["RealSlider"].Instance
 
-            local MousePos = UserInputService:GetMouseLocation()
+        local Stroke = Instance.new("UIStroke")
+        Stroke.LineJoinMode = Enum.LineJoinMode.Miter
+        Stroke.Parent = InputBox
 
-            local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
-            local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
+        InputBox:CaptureFocus()
 
-            Slider:Set(Value)
+        InputBox.FocusLost:Connect(function(EnterPressed)
+            local Parsed = tonumber(InputBox.Text)
+            if Parsed then
+                Slider:Set(Parsed)
+            end
+            InputBox:Destroy()
         end)
+
+        return
+    end
+
+    Slider.Sliding = true
+
+    local MousePos = UserInputService:GetMouseLocation()
+    local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
+    local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
+
+    Slider:Set(Value)
+end)
 
         Items["RealSlider"]:Connect("InputEnded", function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
