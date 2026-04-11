@@ -4083,7 +4083,6 @@ Items["RealSlider"]:Connect("MouseButton1Down", function()
 
         local InputBox = Instances:Create("TextBox", {
             Parent = Items["RealSlider"].Instance,
-            FontFace = Library.Font,
             TextColor3 = Library.Theme.Text,
             BorderColor3 = FromRGB(10, 10, 10),
             Text = "",
